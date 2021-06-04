@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block bord %}
+<h2>제목 : {{blog.title}}</h2>
+<hr class="divider" />
+<p>작성 일자 및 시간 : {{ blog.pub_date }}</p>
+<p>글쓴이 : {{ blog.writer }}</p>
+<p>내용 : {{ blog.content }}</p>
+
+<a href="{% url 'edit' blog.id %}">수정하기</a>
+<a href="{% url 'delete' blog.id %}">삭제하기</a>
+<br>
+<br>
+<br>
+{% for comment in blog.comments.all %}
+    <p>{{ comment.text }}</p>
+{% endfor %}
+<form method="POST" action="{% url 'detail' blog.id %}">
+    {% csrf_token %}
+    <p>{{ form.as_p }}</p>
+    <input type="submit" value="submit">
+</form>
+
+{% endblock %}

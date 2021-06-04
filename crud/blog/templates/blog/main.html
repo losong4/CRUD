@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block bord %}
+<p>MAIN</p>
+<a href="{% url 'create' %}">작성하기</a>
+
+{% for blogs in blogs.all %}
+   <h1>제목 :<a href="{% url 'detail' blogs.id %}">{{ blogs.title }}</a></h1>
+   <p>작성자 : {{ blogs.writer }}</p>
+   <p>작성 일자 및 시간 : {{ blogs.pub_date }}</p>
+{% endfor %}
+{% endblock %}
