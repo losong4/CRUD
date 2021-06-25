@@ -9,6 +9,7 @@ class Blog(models.Model):
     writer = models.CharField(max_length=100, default='이름을 입력해주세요')
     pub_date = models.DateTimeField('date published')
     content = models.TextField()
+    hashtags = models.ManyToManyField('Hashtag', blank=True)
 
     def __str__(self):
         return self.title
@@ -20,3 +21,10 @@ class Comment(models.Model):
 
     post_id = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
     text = models.CharField(max_length=50)
+
+#해쉬태그
+class Hashtag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
