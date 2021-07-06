@@ -9,6 +9,9 @@
         <h1>제목 :<a href="{% url 'detail' blog.id %}">{{ blog.title }}</a></h1>
         <p>작성자 : {{ blog.writer }}</p>
         <p>작성 일자 및 시간 : {{ blog.pub_date }}</p>
+        {% if posts.image %}
+          <img src="{{ posts.image.url }}" width="250" height="250" alt="Card image cap">
+        {% endif %}
       </div>
       <hr>
       {% endfor %}
